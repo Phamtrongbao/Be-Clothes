@@ -1,8 +1,8 @@
 const Product = require("../models/ProductModels");
 
-class ProductController {
+
   //[GET] /Shirt
-  GetProduct = (req, res, next) => {
+ const GetProduct = (req, res, next) => {
     Product.find({})
       .then((shirt) => {
         res.status(200).json(shirt);
@@ -13,7 +13,7 @@ class ProductController {
   };
 
   //[POST] /shirt/AddShirt
-  CreateProduct = async (req, res, next) => {
+ const CreateProduct = async (req, res, next) => {
     const {
       id,
       Amount,
@@ -58,7 +58,7 @@ class ProductController {
   };
 
   //[GET] /Shirt/:id
-  GetDeteilsProduct = (req, res, next) => {
+ const GetDeteilsProduct = (req, res, next) => {
     Product.findById(req.params.id)
       .then((shirtID) => {
         console.log(shirtID);
@@ -70,7 +70,7 @@ class ProductController {
   };
 
   //[PUT] /Shirt/:id/UpdateShirt
-  PutProduct = (req, res, next) => {
+ const PutProduct = (req, res, next) => {
     Product.updateOne({ id: req.params._id }, req.body)
       .then((shirt) => {
         res.status(200).send({
@@ -86,6 +86,11 @@ class ProductController {
         });
       });
   };
-}
 
-module.exports = new ProductController();
+
+module.exports = {
+  GetProduct,
+  GetDeteilsProduct,
+  CreateProduct,
+  PutProduct
+};
