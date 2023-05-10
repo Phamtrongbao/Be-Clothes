@@ -9,7 +9,7 @@ const Brand = require("../models/Brand");
         console.log("cour", course);
         res.status(200).json(course);
       })
-      .catch(() => {
+      .catch((error) => {
         console.log(error);
         res.status(500).send({
           message: "Lỗi khi tìm kiếm các brand",
