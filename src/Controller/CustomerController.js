@@ -1,9 +1,9 @@
 const Customers = require("../models/CustomerModels");
 const jwt = require("jsonwebtoken");
 
-class CustomersController {
+
   //[Get] /customer
-  GetCustomer = (req, res, next) => {
+ const GetCustomer = (req, res, next) => {
     Customers.find()
       .then((customer) => {
         res.status(200).send({
@@ -20,7 +20,7 @@ class CustomersController {
   };
 
   //[POST] /customer/login
-  login = async (req, res, next) => {
+ const login = async (req, res, next) => {
     try {
       const { Email, UserName } = req.body;
       const user = await Customers.findOne({ Email });
@@ -41,7 +41,7 @@ class CustomersController {
   };
 
   //[POST] /customer/Register
-  Register = async (req, res) => {
+ const Register = async (req, res) => {
     try {
       const { Email, Password, Address, Type, UserName, PhoneNumber, Avatar } =
         req.body;
@@ -77,7 +77,7 @@ class CustomersController {
   };
 
   //[PUT] /Customer/:id/UpdateUser
-  UpdateUser = async (req, res, next) => {
+ const UpdateUser = async (req, res, next) => {
     const user = req.user;
     Customers.updateOne({ _id: req.params.id }, req.body)
       .then((userUpdate) => {
@@ -94,9 +94,14 @@ class CustomersController {
   };
 
   //protected
-  protected = (req, res, next) => {
+const  protected = (req, res, next) => {
     const user = req.user;
     res.json(user);
   };
-}
-module.exports = new CustomersController();
+
+module.exports = {
+  GetCustomer,
+  login,
+  Register,
+  UpdateUser
+};

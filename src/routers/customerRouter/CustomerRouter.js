@@ -1,5 +1,5 @@
 const express = require("express");
-const CustomerController = require("../../Controller/CustomerController");
+const { login, Register, UpdateUser, GetCustomer } = require("../../Controller/CustomerController");
 const {
   authenticateCustomer,
   auth,
@@ -7,10 +7,10 @@ const {
 
 const router = express.Router();
 
-router.post("/login", authenticateCustomer, CustomerController.login);
-router.post("/Register", CustomerController.Register);
-router.put("/:id/UpdateUser", auth, CustomerController.UpdateUser);
-router.get("/protected", auth, CustomerController.protected);
-router.get("/", CustomerController.GetCustomer);
+router.post("/login", authenticateCustomer, login);
+router.post("/Register", Register);
+router.put("/:id/UpdateUser", auth, UpdateUser);
+
+router.get("/", GetCustomer);
 
 module.exports = router;

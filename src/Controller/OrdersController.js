@@ -1,8 +1,8 @@
 const Orders = require("../models/OrdersModels");
 
-class OrderController {
+
   //[Get] /orders
-  GetOrder = (req, res, next) => {
+const  GetOrder = (req, res, next) => {
     Orders.find({})
       .then((order) => {
         res.status(200).send(order);
@@ -12,7 +12,7 @@ class OrderController {
       });
   };
   // [POST] /orders/CreateOrders
-  CreateOrders = async (req, res, next) => {
+const  CreateOrders = async (req, res, next) => {
     const { UserName, Email, Address, PhoneNumber, Product,totalPrice } = req.body;
     const user = req.user;
     try {
@@ -38,7 +38,7 @@ class OrderController {
   };
 
   //[Get] /orders/:id/detail
-  GetDetailsOrder = (req, res, next) => {
+const  GetDetailsOrder = (req, res, next) => {
     Orders.findById({ _id: req.params.id })
       .then((orderDetail) => {
         res.status(201).send(orderDetail);
@@ -49,7 +49,7 @@ class OrderController {
   };
 
   //[PUT] /orders/:id/updateorder
-  PutOrder = (req, res, next) => {
+const  PutOrder = (req, res, next) => {
     Orders.updateOne({ _id: req.params.id }, req.body)
       .then((order) => {
         res.status(201).send(order);
@@ -58,6 +58,10 @@ class OrderController {
         res.status(500).send("lỗi server");
       });
   };
-}
 
-module.exports = new OrderController();
+module.exports = {
+  GetOrder,
+  CreateOrders,
+  GetDetailsOrder,
+  PutOrder
+};

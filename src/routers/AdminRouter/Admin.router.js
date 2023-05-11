@@ -1,25 +1,20 @@
 const express = require("express");
 
-const AdminController = require("../../Controller/AdminController");
+const {
+  LoginAdmin,
+  SearchCustomer,
+  SearchOrders,
+  SearchProduct,
+} = require("../../Controller/AdminController");
 const { AdminAuthenicate, authAdmin } = require("../../MiddleWare/Admin");
 const { auth } = require("../../MiddleWare/authenticateCustomer");
 
 const router = express.Router();
-router.post("/LoginAdmin", AdminController.LoginAdmin);
-router.post(
-  "/CreateBrand",
-  auth,
-  AdminAuthenicate,
-  AdminController.CreateBrand
-);
+router.post("/LoginAdmin", LoginAdmin);
+router.post("/CreateBrand", auth, AdminAuthenicate, CreateBrand);
 
-router.get("/searchProduct", AdminController.SearchProduct);
-router.get(
-  "/searchCustomer",
-  auth,
-  AdminAuthenicate,
-  AdminController.SearchCustomer
-);
-router.get("/searchOrders", AdminController.SearchOrders);
+router.get("/searchProduct", SearchProduct);
+router.get("/searchCustomer", auth, AdminAuthenicate, SearchCustomer);
+router.get("/searchOrders", SearchOrders);
 
 module.exports = router;

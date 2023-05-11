@@ -1,9 +1,9 @@
 const express = require("express");
-const BrandController = require("../Controller/BrandController");
+const {GetBrand ,GetBrandDetails} = require("../Controller/BrandController")
 
 
 const router = express.Router();
-router.get("/Brand/:id", BrandController.GetBrandDetails);
-router.get("/Brand", BrandController.GetBrand);
+router.get("/Brand/:id", GetBrandDetails);
+router.get("/Brand", GetBrand);
 
 module.exports = router;
