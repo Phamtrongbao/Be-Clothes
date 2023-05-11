@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const app = express();
 const router = require("./routers/RouterIndex");
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 //connect db
 const db = require("./config/db");
