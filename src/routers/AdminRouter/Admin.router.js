@@ -5,6 +5,7 @@ const {
   SearchCustomer,
   SearchOrders,
   SearchProduct,
+  CreateBrand,
 } = require("../../Controller/AdminController");
 const { AdminAuthenicate, authAdmin } = require("../../MiddleWare/Admin");
 const { auth } = require("../../MiddleWare/authenticateCustomer");
